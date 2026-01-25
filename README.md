@@ -1,2 +1,5 @@
-# kode
-Kodeøvelser, eksempler og spil til Coding Pirates Roskilde afdeling
+# Coding Pirates Roskilde
+
+Dette repo indeholder materiale, kodeøvelser, eksempler, programmer og spil for Coding Pirates Roskilde afdeling.
+
+![logo](cp-roskilde.png)
