@@ -10,8 +10,13 @@ spil for Coding Pirates Roskilde afdeling. Materialet kan findes i undermapper
 
 ## Forløb
 
+I forårssæson 2026 kører vi to forløb
+
 1. **Grafisk** programmering (PictoBlox, Scratch, Microbit)
 2. **Python** programmering
+
+Hvis det er første gang, hiv fat i en instruktør. Vi anbefaler at du derefter
+prøver øvelsen x
 
 ## Regler
 
