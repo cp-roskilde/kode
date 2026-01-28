@@ -8,6 +8,19 @@ spil for Coding Pirates Roskilde afdeling. Materialet kan findes i undermapper
 - [2026 Forårssæson](./2026%20Forår/)
 - [2025 Efterårssæson](./2025%20Efterår/)
 
+## Forløb
+
+1. Grafisk programmering (PictoBlox, Scratch, Microbit)
+2. Python programmering
+
+## Regler
+
+Vi spiller kun de spil vi selv laver! Ræk hånden op hvis du har brug for hjælp
+
+- 17:00 - 18:00 Del 1
+- 18:00 - 18:10 Pause
+- 18:10 - 19:00 Del 2
+
 ## Links
 
 ### PictoBlox
