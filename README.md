@@ -12,11 +12,13 @@ spil for Coding Pirates Roskilde afdeling. Materialet kan findes i undermapper
 
 I forårssæson 2026 kører vi to forløb
 
-1. **Grafisk** programmering (PictoBlox, Scratch, Microbit)
-2. **Python** programmering
+1. `Grafisk programmering` (PictoBlox, Scratch, Microbit)
+2. `Python programmering`
 
-Hvis det er første gang, hiv fat i en instruktør. Vi anbefaler at du derefter
-prøver øvelsen x
+Hvis det er første gang du er her, hiv fat i en instruktør. Vi anbefaler at du
+derefter prøver øvelsen [Dodge Falling
+Balls](./2025%20Efterår/Grafisk/Dodging%20Falling%20Balls/) (Undgå Faldende
+Bolde) hvor du lærer en masse forskellig PictoBlox funktioner.
 
 ## Regler
 
