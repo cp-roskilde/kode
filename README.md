@@ -20,15 +20,19 @@ derefter prøver øvelsen [Dodge Falling
 Balls](./2025%20Efterår/Grafisk/Dodging%20Falling%20Balls/) (Undgå Faldende
 Bolde) hvor du lærer en masse forskellig PictoBlox funktioner.
 
-## Regler
+## Regler og praktik
 
-Vi spiller kun de spil vi selv laver! Ræk hånden op hvis du har brug for hjælp!
+Vi spiller kun de spil vi selv laver!
 
-En normal dag
+Ræk hånden op hvis du har brug for hjælp!
+
+En normal dag består af
 
 - `17:00 - 18:00` Intro og del 1
 - `18:00 - 18:10` Pause
 - `18:10 - 19:00` Del 2 og tak for i dag
+
+Wifi/internet: Vælg `RTS-Guest`. Skriv mobilnummer og du får kode.
 
 ## Links
 
