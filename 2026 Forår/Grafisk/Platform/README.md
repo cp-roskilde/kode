@@ -6,12 +6,16 @@ Du skal lave et platform spil. Det består af en superhelt og en masse ting som
 står i vejen. Hvis du vil kan du lave det svært og du kan også sørge for at
 lægge noget mad ud til superhelten, så han har noget at spise undervejs.
 
+## Bagrunde
+
 Først skal du tegne nogle baggrunde, start fx med tre.
 
 Vi starter bare med en farve som bund. Det kunne være sort. Sørg for at der er
 plads til at din superhelt kan starte ude til venstre.
 
 ![alt text](./images/baggrunde-tegning.png)
+
+## Superhelt
 
 Du skal nu bruge en superhelt.
 
