@@ -41,6 +41,10 @@ Wifi/internet: Vælg `RTS-Guest`. Skriv mobilnummer og du får kode.
 - [PictoBlox](https://pictoblox.ai/)
 - [PictoBlox Link](https://thestempedia.com/product/pictoblox/pictoblox-link/)
 
+### Python
+
+- [IDE pro](https://www.onlineide.pro/playground/python)
+
 ### Scratch
 
 - [Scratch](https://scratch.mit.edu/projects/editor/)
