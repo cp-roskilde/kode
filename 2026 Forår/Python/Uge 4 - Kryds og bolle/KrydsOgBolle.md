@@ -292,7 +292,7 @@ print("Det blev uafgjort!")
 
 Test om jeres spil virker.
 
-## Ekstraopgave 2 (middel): Kan man lave rammer omkring spillet?
+## Ekstraopgave 1 (middel): Kan man lave rammer omkring spillet?
 
 Lige nu ser spillet sådan ud:
 
