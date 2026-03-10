@@ -22,8 +22,10 @@ til en tilfældig bane.
 
 Men du vælger selv hvad der skal ske!
 
-Hvis du vil prøve spillet med de 100 baner, så kan du downloade det her: [100
-baner](100%20baner.sb3) og indlæse det i din Pictoblox. HUSK at gemme dit eget
-først.
+Hvis du vil prøve spillet med de 100 baner, så kan du downloade det her og
+indlæse det i din Pictoblox. HUSK at gemme dit eget først. Du downloader det ved
+at trykke på pilen ned herinde [100 baner](100%20baner.sb3).
+
+![portal3](./images/portal3.png)
 
 God fornøjelse! Og tak til Asa 🥳
