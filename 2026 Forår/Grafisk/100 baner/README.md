@@ -1,4 +1,4 @@
-# 100 baner (Asa)
+# 100 baner
 
 Asa har lavet en spændende variant af
 [Platform](./../Platform/README.md)-spillet:
