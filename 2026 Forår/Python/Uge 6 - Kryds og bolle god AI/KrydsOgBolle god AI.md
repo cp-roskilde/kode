@@ -150,3 +150,6 @@ Prøv at gøre tallet `3` højere og se om AI bliver bedre.
 Hvad sker der hvis man bruger tallet `10` i stedet for?
 
 Hvad er et godt tal for at gøre AI bedst?
+
+## Ekstra opgave 1 - AI mod AI.
+Kan du i koden finde ud af hvordan du får AI til at spille mod sig selv?
