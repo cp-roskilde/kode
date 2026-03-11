@@ -96,10 +96,10 @@ Hvis brugeren har skrevet noget der ikke er et enkelt bogstav, har de nok forsø
 
 ```python
 else: #Hvis der er noget andet end 1 tegn.
-  if reponse==word:
+  if response==word:
     print("Godt gættet.")
   else:
-    print("Nej, ordet var ikke '"+ reponse +"'")
+    print("Nej, ordet var ikke '"+ response +"'")
 ```
 
 Da vi før checkede om `response` havde en længde på 1, kan vi bruge udtrykket `else` til at se om den har en anden længde. Hvis det har en anden længde, er der gættet på et ord, og vi ser om der er gættet rigtigt.
