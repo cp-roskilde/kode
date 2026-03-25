@@ -54,10 +54,15 @@ tilgængelige er
 
 Andre online alternativer er
 
+- [Insiders VS Code for Web](https://insiders.vscode.dev?vscode-coi=)
+  - Kræver GitHub konto, som desværre kræver alder 13+
+  - Læs [VS Code for Web med Run and Debug
+    Python](https://code.visualstudio.com/docs/python/python-web)
+  - Husk extension [Experimental - Python for the
+    Web](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-python-web-wasm)
+  - Åbn fx [cp-roskilde/kode](https://github.com/cp-roskilde/kode) (dette) når
+    det er på plads, så kan den afvikle Python
 - [Trinket](https://jumpto.cc/python-new): Simpel, men lukker august 2026
-- [VS Code for Web](https://vscode.dev), [VS Code for Web med Run and Debug
-  Python](https://code.visualstudio.com/docs/python/python-web): Kræver GitHub
-  konto, som kræver alder 13+
 
 ### Scratch
 
