@@ -11,13 +11,13 @@ Det er muligt at lave øvelserne både som grafisk eller Python programmering. B
 
 Vi får brug for at kunne arbejde sammen. Det er nemmest hvis man har sine egne ting klar fra start.  
 
-Vi skal have oprettet flere små projekter. På siden [MakeCode](https://makecode.Micro:Bit.org/) kan man have flere forskellige projekter samtidig.
+Vi skal have oprettet flere små projekter. På siden [MakeCode](https://makecode.MicroBit.org/) kan man have flere forskellige projekter samtidig.
 
 Start med at gennemføre disse projekter, så du har noget kode klar at arbejde videre med:
-1. [Terning med tal](https://Micro:Bit.org/projects/make-it-code-it/dice/?editor=python) eller  [Grafisk terning](https://Micro:Bit.org/projects/make-it-code-it/graphical-dice/?editor=python)  
+1. [Terning med tal](https://MicroBit.org/projects/make-it-code-it/dice/?editor=python) eller  [Grafisk terning](https://MicroBit.org/projects/make-it-code-it/graphical-dice/?editor=python)  
    Man må godt lave begge to, hvis man har lyst.
 
-2. [Sten saks papir](https://Micro:Bit.org/projects/make-it-code-it/rock-paper-scissors/?editor=python)s
+2. [Sten saks papir](https://MicroBit.org/projects/make-it-code-it/rock-paper-scissors/?editor=python)s
 
 ## Radio øvelser
 
@@ -34,8 +34,8 @@ radio.config(group=42)
 ```
 
 Prøv at se om i kan få disse projekter til at virke:
-1. [Send et smil](https://Micro:Bit.org/projects/make-it-code-it/send-a-smile/?editor=python)
-2. [Teleporterende and](https://Micro:Bit.org/projects/make-it-code-it/teleporting-duck/?editor=python)
+1. [Send et smil](https://MicroBit.org/projects/make-it-code-it/send-a-smile/?editor=python)
+2. [Teleporterende and](https://MicroBit.org/projects/make-it-code-it/teleporting-duck/?editor=python)
 
 ## Sæt det sammen 1 - Flere terninger
 
