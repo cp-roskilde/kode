@@ -53,9 +53,9 @@ flowchart TD
     wait[3 - Du har valgt, vi venter på den anden.]
     wait -- Der modtages at valg fra den anden \n  --> wait-s1((Gem den andens valg i variablen `anden`)) --> wait-s2((Sæt state til 4)) --> check
 
-    select2 -- B trykkes --> select-s6((Send det valgte tal)) --> select-s7((Sæt state til 5)) --> check
+    select2 -- B trykkes --> select-s6((Send det valgte tal)) --> select-s7((Sæt state til 4)) --> check
     check((Sammenlign variablerne `valgt` og `anden`. Vis med en smiley om der er tabt, vundet eller uafgjort.)) --> done
-    done[5 - Spillet er slut]
+    done[4 - Spillet er slut]
 
     done -- Tryk på `A` --> select
     done -- Tryk på `B` --> select
