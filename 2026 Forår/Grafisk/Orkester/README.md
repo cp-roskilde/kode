@@ -2,7 +2,7 @@
 
 August har lavet denne øvelse - tobis orkester (med et spørgsmål fra tobi).
 
-![tobis orkester](orkester.png)
+![tobis orkester](./images/orkester.png)
 
 ## Vejledning
 
@@ -14,11 +14,11 @@ Du skal lære om udvidelser.
 
 Start med at klikke på knappen helt nede i venstre hjørne og vægl så en udvidelse.
 
-![alt text](udvidelser.png)
+![alt text](./images/udvidelser.png)
 
 I denne øvelse er det musik udvidelsen der er brugt.
 
-![alt text](musik.png)
+![alt text](./images/musik.png)
 
 ### bagrund
 Du må selv vælge.
@@ -27,22 +27,22 @@ Du må selv vælge.
 
 Trommen har to kostymer.
 
-![alt text](tromme1.png)    ![alt text](tromme2.png)
+![alt text](./images/tromme1.png)    ![alt text](./images/tromme2.png)
 
 Klokken har også to.
 
-![alt text](klokke.png)
+![alt text](./images/klokke.png)
 
 Det næste er bare spejlvendt.
 
 Til hihaten er der også to.
 
-![alt text](hihat1.png)
-![alt text](hihat2.png)
+![alt text](./images/hihat1.png)
+![alt text](./images/hihat2.png)
 
 Tobi: man drejer lidt på hans arm og sætter en streg.
 
-![alt text](tobi.png)
+![alt text](./images/tobi.png)
 
 
 
@@ -50,23 +50,23 @@ Tobi: man drejer lidt på hans arm og sætter en streg.
 
 Vi starter med trommens kode. Den ser sådan her ud.
 
-![alt text](trommekode.png)
+![alt text](./images/trommekode.png)
 
 Og klokkens.
 
-![alt text](klokkekode.png)
+![alt text](./images/klokkekode.png)
 
 Kan du se at der er en besked kodedel. Den skal bruges til tobis kode.
 
 Hihattens kode ser sådan her ud.
 
-![alt text](hihatkode.png)
+![alt text](./images/hihatkode.png)
 
 Alle instumenternes koder gør så de siger en lyd.
 
 Den sidste kode er tobis.
 
-![alt text](tobikode.png)
+![alt text](./images/tobikode.png)
 
 Den gør så han spørger om musikken er god.
 
