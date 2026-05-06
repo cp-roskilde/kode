@@ -1,4 +1,4 @@
-# Micro:Bit Radio 2
+# Micro:Bit Billede
 
 ## Resultatet
 
