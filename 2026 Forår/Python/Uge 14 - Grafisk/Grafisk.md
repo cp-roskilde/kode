@@ -34,6 +34,7 @@ Start med at se om du kan køre denne kode:
 
 ```python
 import math
+import random
 import pygame
 
 WIDTH = 500
