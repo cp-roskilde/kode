@@ -52,6 +52,12 @@ tilgængelige er
 - [PictoBlox](https://pictoblox.ai/): Kan kode Python, naturligt sted at
   fortsætte fra at kode Blocks. Vi kender programmet allerede
 
+Måske virker også dette lokale alternativ
+
+- [Thonny Python IDE](https://thonny.org/): Smart, har en simpel mode
+  - Kan hentes i en variant som ikke kræver installation og inkluderer Python i
+    pakken - vælg Portable pakken
+
 Andre online alternativer er
 
 - [Insiders VS Code for Web](https://insiders.vscode.dev?vscode-coi=)
