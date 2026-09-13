@@ -15,7 +15,7 @@ class Circle:
         self.size = 0
         self.speed = speed
 
-new_circle_chance = 0.0075
+new_circle_chance = 0.0150
 circles = []
 
 circle_color = (200, 100, 50)
@@ -54,6 +54,12 @@ while running:
     screen.fill(background_color)
 
     for circle in circles:
+        if circle.size < 25:
+            circle_color = pygame.Color("yellow")
+        elif circle.size > 25 and circle.size < 50:
+            circle_color = pygame.Color("orange")
+        elif circle.size > 50:
+            circle_color = pygame.Color("red")
         pygame.draw.circle(
             screen,
             circle_color,

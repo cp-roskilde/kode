@@ -12,11 +12,11 @@ player_x = WIDTH // 2
 player_y = HEIGHT // 2
 player_speed_x = 0
 player_speed_y = 0
-player_speed = 2
+player_speed = 4
 
-player_size = 10
+player_size = 50
 
-player_color = (0,200,0)
+player_color = (200,200,0)
 background_color = (0, 0, 0)
 
 clock = pygame.time.Clock()
@@ -49,9 +49,14 @@ while running:
         if event.type==pygame.KEYUP and event.key == pygame.K_DOWN:
             player_speed_y -= player_speed
 
-    # Handlinger
-    player_x = player_x + player_speed_x
-    player_y = player_y + player_speed_y
+    if player_x - player_size <= 0 or player_x + player_size >= 800:
+        player_x = WIDTH // 2
+    elif player_y + player_size >= 600 or player_y - player_size <= 0:
+        player_y = HEIGHT // 2
+    else:
+        # Handlinger
+        player_x = player_x + player_speed_x
+        player_y = player_y + player_speed_y
     
     # Tegn
     screen.fill(background_color)
