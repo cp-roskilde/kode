@@ -46,10 +46,58 @@ i vores kode, men det er godt at kende begge.
 - Forstå hvorfor vi deler kode i flere filer
 - Lære at bruge `import` mellem egne filer
 - Tegne spillepladen (græsset)
-- Vise spillerens point øverst på skærmen med almindelig tekst
+- Vise spillerens point øverst på skærmen med almindelig tekst (HUD - Heads Up Display) - HUD er en meget anvendt benævnelse for al info, som skrives på skærmen, både ren tekst men også grafisk.
 
 ### `hud.py`
 
+For at lave vores point linie, skal vi først initialisere pygame og derefter fortælle pygame, at vi skal bruge en font (skrifttype).
+Dette gøres således:
+´´´python
+import pygame # Importer pygame modulet, så vi kan bruge funktionerne.
+pygame.init() # Initialisér pygame - Pygame skal initialiseres, før man kan bruge funktionerne.
+
+font = pygame.font.SysFont("couriernew", 28) # Vi laver en variabel (_font_), som indeholder fonten 'couriernew' i størrelse 28 pixel.
+´´´
+
+Nu er vi klar til at bruge fonten. Vi laver en funktion, som skriver på skærmen, med den valgte skrifttype.
+Vores funktion skal have 2 input - _screen_ og _score_
+    - screen, er den pygame skærm vi vil skrive på
+    - score, er den værdi vi vil skrive
+
+´´´python
+def draw_hud_text(screen, score): 
+    score = max(0, min(score, 999))  # klem score til 0-999
+    text = f" SCORE {score:03d}"      # nul-udfyld til 3 cifre, fx 0 -> "000", 42 -> "042"
+    rendered = font.render(text, True, (255, 255, 255))
+    screen.blit(rendered, (0, 0))
+´´´
+I funktionen, er det første vi gør, at fortælle, at score skal være mellem 0 og 999
+
+Derefter formatterer vi den tekst vi vil skrive - Dette gøres, i python med et lille 'f', foran tekststrengen.
+    __text = f" SCORE {score:03d}"__
+Her er en opdeling af, hvad hver del betyder:
+    __:__ Indleder formateringen indeni f-strengen.
+    __0__ Angiver, at tomme pladser skal udfyldes med nuller (0) i stedet for mellemrum.
+    __3__ Angiver den mindste bredde (antal tegn), som teksten skal have.
+    __d__ Står for "decimal integer" og betyder, at værdien skal behandles som et heltal (0, 1, 2 o.s.v.).
+
+Når vi har formateret vores tekststreng, skal vi have lavet en gengivelse af den færdige tekst (render betyder at gengive).
+    ___rendered = font.render(text, True, (255, 255, 255))___
+    Vi opretter en variabel til at holde resultatet - ___rendered___
+    Nu kalder vi _render_ funktionen på vores _font_ variabel - _font.render(...)_
+    Første input, er vores formaterede teksstreng _text_
+    Andet input, er noget som hedder _antialias_, som gør at teksten bliver pænere at se på. Denne sættes til _True_
+    Tredje input, er farven (Rød, Greøn, Blå), som vi har arbejdet med tidligere.
+        Disse 3 værdier går fra 0 til 255, således betyder __(0, 0, 0)__ at teksten bliver sort. Og __(255, 255, 255)__ betyder at teksten bliver hvid.
+
+Vi kan nu tegne vores tekst på skærmen.
+    __screen.blit(rendered, (0, 0))__
+    Her gemmer vi ikke resultatet, men kalder bare en funktion.
+    __screen__ er den variable, vores funktion har fået, som er pygame skærmen vi vil skrive på.
+    __.blit__ er den funktion som faktisk tegner på skærmen.
+    __(0, 0)__ er skærm-koordinater, i pixel - Her vil vi gerne tegne på koordinat 0,0 (øverste venstre hjørne af pygame skærmen)
+
+Den fulde kode for vores HUD.py fil er her:    
 ```python
 import pygame
 pygame.init()
