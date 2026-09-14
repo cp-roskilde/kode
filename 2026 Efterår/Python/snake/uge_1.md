@@ -76,17 +76,17 @@ def draw_hud_text(screen, score):
 I funktionen, er det første vi gør, at fortælle, at score skal være mellem 0 og 999
 
 Derefter formatterer vi den tekst vi vil skrive - Dette gøres, i python med et lille 'f', foran tekststrengen. 
-- __text = f" SCORE {score:03d}"__
+- **text = f" SCORE {score:03d}"**
 Her er en opdeling af, hvad hver del betyder: 
-- __:__ Indleder formateringen indeni f-strengen.
-- __0__ Angiver, at tomme pladser skal udfyldes med nuller (0) i stedet for mellemrum.
-- __3__ Angiver den mindste bredde (antal tegn), som teksten skal have.
-- __d__ Står for "decimal integer" og betyder, at værdien skal behandles som et heltal (0, 1, 2 o.s.v.).
+- **:** Indleder formateringen indeni f-strengen.
+- **0** Angiver, at tomme pladser skal udfyldes med nuller (0) i stedet for mellemrum.
+- **3** Angiver den mindste bredde (antal tegn), som teksten skal have.
+- **d** Står for "decimal integer" og betyder, at værdien skal behandles som et heltal (0, 1, 2 o.s.v.).
 
 Når vi har formateret vores tekststreng, skal vi have lavet en gengivelse af den færdige tekst (render betyder at gengive).
-- ___rendered = font.render(text, True, (255, 255, 255))___  
-Vi opretter en variabel til at holde resultatet - ___rendered___  
-Nu kalder vi _render_ funktionen på vores _font_ variabel - _font.render(...)_
+- ***rendered = font.render(text, True, (255, 255, 255))*** 
+Vi opretter en variabel til at holde resultatet - ***rendered***  
+Nu kalder vi **render** funktionen på vores **font** variabel - **font.render(...)**
 - Første input, er vores formaterede teksstreng _text_
 - Andet input, er noget som hedder _antialias_, som gør at teksten bliver pænere at se på. Denne sættes til _True_
 - Tredje input, er farven (Rød, Greøn, Blå), som vi har arbejdet med tidligere.
