@@ -81,10 +81,13 @@ Og den variabel, vi vil formatere, skal stå i ***"{}"***
 - ***text = f" SCORE {score:03d}"***
 
 Her er en opdeling af, hvad hver del betyder: 
+- ***" SCORE "*** Er bare ren tekst.
+- ***{score*** er den variabel vi vil formatere.
 - ***:*** Indleder formateringen indeni f-strengen.
 - ***0*** Angiver, at tomme pladser skal udfyldes med nuller (0) i stedet for mellemrum.
 - ***3*** Angiver den mindste bredde (antal tegn), som teksten skal have.
 - ***d*** Står for "decimal integer" og betyder, at værdien skal behandles som et heltal (0, 1, 2 o.s.v.).
+- ***}*** Afslutning af formatering.
 
 Når vi har formateret vores tekststreng, skal vi have lavet en gengivelse af den færdige tekst (render betyder at gengive).
 - ***rendered = font.render(text, True, (255, 255, 255))*** 
