@@ -76,29 +76,30 @@ def draw_hud_text(screen, score):
 I funktionen, er det første vi gør, at fortælle, at score skal være mellem 0 og 999
 
 Derefter formatterer vi den tekst vi vil skrive - Dette gøres, i python med et lille 'f', foran tekststrengen. 
-- **text = f" SCORE {score:03d}"**
+- ***text = f" SCORE {score:03d}"***
+
 Her er en opdeling af, hvad hver del betyder: 
-- **:** Indleder formateringen indeni f-strengen.
-- **0** Angiver, at tomme pladser skal udfyldes med nuller (0) i stedet for mellemrum.
-- **3** Angiver den mindste bredde (antal tegn), som teksten skal have.
-- **d** Står for "decimal integer" og betyder, at værdien skal behandles som et heltal (0, 1, 2 o.s.v.).
+- ***:*** Indleder formateringen indeni f-strengen.
+- ***0*** Angiver, at tomme pladser skal udfyldes med nuller (0) i stedet for mellemrum.
+- ***3*** Angiver den mindste bredde (antal tegn), som teksten skal have.
+- ***d*** Står for "decimal integer" og betyder, at værdien skal behandles som et heltal (0, 1, 2 o.s.v.).
 
 Når vi har formateret vores tekststreng, skal vi have lavet en gengivelse af den færdige tekst (render betyder at gengive).
 - ***rendered = font.render(text, True, (255, 255, 255))*** 
 Vi opretter en variabel til at holde resultatet - ***rendered***  
 Nu kalder vi **render** funktionen på vores **font** variabel - **font.render(...)**
-- Første input, er vores formaterede teksstreng _text_
-- Andet input, er noget som hedder _antialias_, som gør at teksten bliver pænere at se på. Denne sættes til _True_
+- Første input, er vores formaterede teksstreng **text**
+- Andet input, er noget som hedder **antialias**, som gør at teksten bliver pænere at se på. Denne sættes til **True**
 - Tredje input, er farven (Rød, Greøn, Blå), som vi har arbejdet med tidligere.
-        Disse 3 værdier går fra 0 til 255, således betyder __(0, 0, 0)__ at teksten bliver sort. Og __(255, 255, 255)__ betyder at teksten bliver hvid.
+        Disse 3 værdier går fra 0 til 255, således betyder ***(0, 0, 0)*** at teksten bliver sort. Og ***(255, 255, 255)*** betyder at teksten bliver hvid.
 
 Vi kan nu tegne vores tekst på skærmen.
-- __screen.blit(rendered, (0, 0))__
+- ***screen.blit(rendered, (0, 0))***
 
 Her gemmer vi ikke resultatet, men kalder bare en funktion.
-- __screen__ er den variable, vores funktion har fået, som er pygame skærmen vi vil skrive på.
-- __.blit__ er den funktion som faktisk tegner på skærmen.
-- __(0, 0)__ er skærm-koordinater, i pixel - Her vil vi gerne tegne på koordinat 0,0 (øverste venstre hjørne af pygame skærmen)
+- ***screen*** er den variable, vores funktion har fået, som er pygame skærmen vi vil skrive på.
+- ***.blit*** er den pygame funktion som faktisk tegner på skærmen.
+- ***(0, 0)*** er skærm-koordinater, i pixel - Her vil vi gerne tegne på koordinat 0,0 (øverste venstre hjørne af pygame skærmen)
 
 Den fulde kode for vores HUD.py fil er her:   
 
