@@ -52,6 +52,7 @@ i vores kode, men det er godt at kende begge.
 
 For at lave vores point linie, skal vi først initialisere pygame og derefter fortælle pygame, at vi skal bruge en font (skrifttype).
 Dette gøres således:
+
 ´´´python
 import pygame # Importer pygame modulet, så vi kan bruge funktionerne.
 pygame.init() # Initialisér pygame - Pygame skal initialiseres, før man kan bruge funktionerne.
@@ -97,7 +98,8 @@ Vi kan nu tegne vores tekst på skærmen.
     __.blit__ er den funktion som faktisk tegner på skærmen.
     __(0, 0)__ er skærm-koordinater, i pixel - Her vil vi gerne tegne på koordinat 0,0 (øverste venstre hjørne af pygame skærmen)
 
-Den fulde kode for vores HUD.py fil er her:    
+Den fulde kode for vores HUD.py fil er her:   
+
 ```python
 import pygame
 pygame.init()
