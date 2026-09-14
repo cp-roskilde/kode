@@ -91,7 +91,7 @@ Her er en opdeling af, hvad hver del betyder:
 - ***}*** Afslutning af formatering.
 
 Når vi har formateret vores tekststreng, skal vi have lavet en gengivelse af den færdige tekst (render betyder at gengive).
-- ***rendered = font.render(text, True, (255, 255, 255))*** 
+- ***rendered = font.render(text, True, (255, 255, 255))***  
 Vi opretter en variabel til at holde resultatet - ***rendered***  
 Nu kalder vi **render** funktionen på vores **font** variabel - **font.render(...)**
 - Første input, er vores formaterede teksstreng **text**
