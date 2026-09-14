@@ -77,7 +77,7 @@ I funktionen, er det første vi gør, at fortælle, at score skal være mellem 0
 
 Derefter formatterer vi den tekst vi vil skrive - Dette gøres, i python med et lille 'f', foran tekststrengen.
 
-Og den variabel, vi vil formatere, skal stå i ***"{}"***
+Og den variabel, vi vil formatere samt selve formateringen skal stå i ***"{}"***
 - ***text = f" SCORE {score:03d}"***
 
 Her er en opdeling af, hvad hver del betyder: 
