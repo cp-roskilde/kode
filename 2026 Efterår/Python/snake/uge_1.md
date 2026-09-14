@@ -57,7 +57,7 @@ Dette gøres således:
 import pygame # Importer pygame modulet, så vi kan bruge funktionerne.
 pygame.init() # Initialisér pygame - Pygame skal initialiseres, før man kan bruge funktionerne.
 
-font = pygame.font.SysFont("couriernew", 28) # Vi laver en variabel (_font_), som indeholder fonten 'couriernew' i størrelse 28 pixel.
+font = pygame.font.SysFont("couriernew", 28) # Vi laver en variabel (font), som indeholder fonten 'couriernew' i størrelse 28 pixel.
 ```
 
 Nu er vi klar til at bruge fonten. Vi laver en funktion, som skriver på skærmen, med den valgte skrifttype.  
