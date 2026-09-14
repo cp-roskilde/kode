@@ -82,7 +82,8 @@ Og den variabel, vi vil formatere, skal stå i ***"{}"***
 
 Her er en opdeling af, hvad hver del betyder: 
 - ***" SCORE "*** Er bare ren tekst.
-- ***{score*** er den variabel vi vil formatere.
+- ***{*** Start på formatering.
+- ***score*** den variabelværdi vi vil formatere.
 - ***:*** Indleder formateringen indeni f-strengen.
 - ***0*** Angiver, at tomme pladser skal udfyldes med nuller (0) i stedet for mellemrum.
 - ***3*** Angiver den mindste bredde (antal tegn), som teksten skal have.
