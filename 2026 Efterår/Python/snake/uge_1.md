@@ -60,7 +60,7 @@ pygame.init() # Initialisér pygame - Pygame skal initialiseres, før man kan br
 font = pygame.font.SysFont("couriernew", 28) # Vi laver en variabel (_font_), som indeholder fonten 'couriernew' i størrelse 28 pixel.
 ```
 
-Nu er vi klar til at bruge fonten. Vi laver en funktion, som skriver på skærmen, med den valgte skrifttype.
+Nu er vi klar til at bruge fonten. Vi laver en funktion, som skriver på skærmen, med den valgte skrifttype. 
 Vores funktion skal have 2 input - _screen_ og _score_
     - screen, er den pygame skærm vi vil skrive på
     - score, er den værdi vi vil skrive
@@ -75,9 +75,9 @@ def draw_hud_text(screen, score):
 
 I funktionen, er det første vi gør, at fortælle, at score skal være mellem 0 og 999
 
-Derefter formatterer vi den tekst vi vil skrive - Dette gøres, i python med et lille 'f', foran tekststrengen.
+Derefter formatterer vi den tekst vi vil skrive - Dette gøres, i python med et lille 'f', foran tekststrengen. 
     __text = f" SCORE {score:03d}"__
-Her er en opdeling af, hvad hver del betyder:
+Her er en opdeling af, hvad hver del betyder: 
     __:__ Indleder formateringen indeni f-strengen.
     __0__ Angiver, at tomme pladser skal udfyldes med nuller (0) i stedet for mellemrum.
     __3__ Angiver den mindste bredde (antal tegn), som teksten skal have.
