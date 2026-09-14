@@ -61,7 +61,7 @@ font = pygame.font.SysFont("couriernew", 28) # Vi laver en variabel (font), som 
 ```
 
 Nu er vi klar til at bruge fonten. Vi laver en funktion, som skriver på skærmen, med den valgte skrifttype.  
-Vores funktion skal have 2 input variabler - _screen_ og _score_ (variablernes navne er ikke vigtig, sålænge det er noget, som giver mening - disse variabelnavne bliver KUN brugt, i selve funktionen).
+Vores funktion skal have 2 input variabler - _screen_ og _score_ (variablernes navne er ikke vigtige, sålænge det er noget som giver mening - disse variabelnavne bliver KUN brugt i selve funktionen).
 - ***screen***, er den pygame skærm vi vil skrive på
 - ***score***, er den værdi vi vil skrive
 
