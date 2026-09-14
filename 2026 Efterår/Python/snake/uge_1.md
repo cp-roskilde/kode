@@ -62,8 +62,8 @@ font = pygame.font.SysFont("couriernew", 28) # Vi laver en variabel (font), som 
 
 Nu er vi klar til at bruge fonten. Vi laver en funktion, som skriver på skærmen, med den valgte skrifttype.  
 Vores funktion skal have 2 input - _screen_ og _score_
-- screen, er den pygame skærm vi vil skrive på
-- score, er den værdi vi vil skrive
+- ***screen***, er den pygame skærm vi vil skrive på
+- ***score***, er den værdi vi vil skrive
 
 ```python
 def draw_hud_text(screen, score): 
@@ -90,7 +90,7 @@ Vi opretter en variabel til at holde resultatet - ***rendered***
 Nu kalder vi **render** funktionen på vores **font** variabel - **font.render(...)**
 - Første input, er vores formaterede teksstreng **text**
 - Andet input, er noget som hedder **antialias**, som gør at teksten bliver pænere at se på. Denne sættes til **True**
-- Tredje input, er farven (Rød, Greøn, Blå), som vi har arbejdet med tidligere.
+- Tredje input, er farven (Rød, Grøn, Blå), som vi har arbejdet med tidligere.
         Disse 3 værdier går fra 0 til 255, således betyder ***(0, 0, 0)*** at teksten bliver sort. Og ***(255, 255, 255)*** betyder at teksten bliver hvid.
 
 Vi kan nu tegne vores tekst på skærmen.
