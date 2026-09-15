@@ -96,8 +96,8 @@ Python finder selv ud af hvilken type værdi, en variabel kan indeholde. Det ske
 
 Nu laver vi en funktion til at tegne græsset.
 - ***rect_color*** bliver sat til vores græsfarve 'green3'
-- 
-Herefter laver vi en løkke, hvor v i tæller x (dette er også en variabel), fra 0 til ***BOARD_COLUMNS*** (24).
+
+Herefter laver vi en løkke, hvor v i tæller ***x*** (dette er også en variabel), op til ***BOARD_COLUMNS*** (24).
 Og for hver ***x***, tæller vi ***y***, fra 1 til ***BOARD_ROWS*** (16 + 1) - Denne **+1** springer første række over (øverste række bliver bare sort/tom).  
 Nu skal vi tegne vores græs. Vi starter med en variable til at 'holde' vores 'græs'-frikant.
 - ***grass*** Vi definerer et rektangel, på et bestemt sted i vores vindue.
@@ -112,7 +112,41 @@ def draw_grass():
             pygame.draw.rect(screen, rect_color, grass)
 ```
 
+Nu skal vi se, hvordan vores vindue ser ud.
+Først skal vi have en variabel for 
+- ***clock*** denne indeholder vores realtidsur i spillet.
+- ***running*** denne variabel er en sand/falsk variabel, som bruges til enten at køre spillet (running = True) eller afslutte (running = False).
 
+Nu kører vi spillet - ***while running*** er en evighedsløkke, som først slutter, når ***running = False***.
+
+Vi afventer nu events - Hvis vi får **pygame.QUIT** eventet (du lukker vinduet, på knappen i hjørnet), så sætter vi ***running = False***  
+Hvis ikke der er nogen events vi skal håndtere, tegner vi først vores point **draw_hud_text(screen, score)**, i øverste række i vinduet.  
+Derefter tegner vi græsset **draw_grass()**  
+Herefter viser vi hvad vi lige har tegnet - **pygame.display.flip**
+Vi sætter nu viduets opdateringshastighed **clock.tick(60)** til 60 billeder i sekundet (dette er så hurtigt at billedet ikke flimrer). I kan prøve at justere denne ned, med 10, hver gang. Og se, hvornår billedet flimrer (det vil være omkring 25 billeder i sekundet)
+
+Hvis ***running = False*** så afslutter vi spillet ***pygame.quit()***.
+
+```python
+clock = pygame.time.Clock()
+running = True
+
+while running:
+    for event in pygame.event.get():
+        # Luk spillet
+        if event.type == pygame.QUIT:
+            running = False
+
+    draw_hud_text(screen, score)
+    draw_grass()
+
+    pygame.display.flip()
+    clock.tick(60)
+
+pygame.quit()
+```
+
+Her er snake_game.py filen, i sin helhed.
 
 ```python
 import pygame
