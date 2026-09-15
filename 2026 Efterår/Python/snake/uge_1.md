@@ -48,6 +48,116 @@ i vores kode, men det er godt at kende begge.
 - Tegne spillepladen (græsset)
 - Vise spillerens point øverst på skærmen med almindelig tekst (HUD - Heads Up Display) - HUD er en meget anvendt benævnelse for al info, som skrives på skærmen, både ren tekst men også grafisk.
 
+### `snake_game.py`
+Vores hovedfil, er ansvarlig for at holde styr på alle andre komponenter af spillet.
+
+En god grund til at dele et program op i flere filer, er at gøre vedligehold meget nemmere.  
+Derfor er det også vigtigt at navngive filer, så det er nemt at forstå hvad den enkelte fil er ansvarlig for.
+
+Vi starter med at importere samt initialisere pygame modulet. Initialiseringen af dette modul er nødvendig, for at få adgang til funktionerne.
+Herefter importerer vi vores point funktion fra hud.py filen.
+
+```python
+import pygame
+pygame.init()
+
+from hud import draw_hud_text
+```
+
+Vi skal nu have sat nogle variabler op.
+- ***GAME_BOARD*** som en tom liste, representeret som ***[]***
+- ***CELL_SIZE*** som angiver hver enkelt cellestørrelse, på vore 'spilleplade', i pixels. I dette tilfælde 24x24 pixel.
+- ***BOARD_ROWS*** som angiver antal rækker (16 rækker - y-retning), i vores spil.
+- ***BOARD_COLUMNS*** som angiver antal kolonner (24 kolonner - x-retning), i vores spil.
+- ***WIDTH*** vores vinduesbredde, beregnet som ***BOARD_COLUMNS * CELL_SIZE*** - 24*24 pixels bred (576 pixels)
+- ***HEIGHT*** vores vindueshøjde, ***BOARD_ROWS * CELL_SIZE*** - 16*24 pixels høj (448 pixels) OBS! Vi justerer denne, når vi definerer vinduet.
+- ***score*** denne indeholder vores spilscore, og bliver sat til 0 fra start.
+- ***screen*** her definerer vi vores vindues størrelse, læg mærke til at vi her bruger vores variabler, i stedet for direkte tal. Læg også mærke til at vi lægger ***CELL_SIZE*** til højden - Hvorfor tror I vi gør det?
+
+Vi sætter nu vores vinduestitel - 'Snake'
+
+```python 
+GAME_BOARD = []
+CELL_SIZE = 32
+BOARD_ROWS = 16
+BOARD_COLUMNS = 24
+
+WIDTH = BOARD_COLUMNS * CELL_SIZE
+HEIGHT = BOARD_ROWS * CELL_SIZE
+
+score = 0
+
+screen = pygame.display.set_mode((WIDTH, HEIGHT + CELL_SIZE))
+pygame.display.set_caption("Snake")
+```
+
+Grunden til at vi bruger variabler, istedet for direkte tal, er at det er meget nemmere at ændre f.eks. vinduesbredden ét sted, frem for at skulle ændre 5 eller 10 steder i koden.
+Python finder selv ud af hvilken type værdi, en variabel kan indeholde. Det sker på baggrund af den type værdi vi fylder i, fra starten. f.eks. ***score***, putter vi 0 i - 0 er et heltal, derfor betragter python denne variable som et heltal.
+
+Nu laver vi en funktion til at tegne græsset.
+- ***rect_color*** bliver sat til vores græsfarve 'green3'
+- 
+Herefter laver vi en løkke, hvor v i tæller x (dette er også en variabel), fra 0 til ***BOARD_COLUMNS*** (24).
+Og for hver ***x***, tæller vi ***y***, fra 1 til ***BOARD_ROWS*** (16 + 1) - Denne **+1** springer første række over (øverste række bliver bare sort/tom).  
+Nu skal vi tegne vores græs. Vi starter med en variable til at 'holde' vores 'græs'-frikant.
+- ***grass*** Vi definerer et rektangel, på et bestemt sted i vores vindue.
+
+Herefter tegner vi vores rektangel (***grass***), med farven ***rect_color***, i vinduet (***screen***).
+```python
+def draw_grass():
+    rect_color = pygame.Color("green3")
+    for x in range(BOARD_COLUMNS):
+        for y in range(1, BOARD_ROWS + 1):
+            grass = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+            pygame.draw.rect(screen, rect_color, grass)
+```
+
+
+
+```python
+import pygame
+pygame.init()
+
+from hud import draw_hud_text
+
+GAME_BOARD = []
+CELL_SIZE = 32
+BOARD_ROWS = 16
+BOARD_COLUMNS = 24
+
+WIDTH = BOARD_COLUMNS * CELL_SIZE
+HEIGHT = BOARD_ROWS * CELL_SIZE
+
+score = 0
+
+screen = pygame.display.set_mode((WIDTH, HEIGHT + CELL_SIZE))
+pygame.display.set_caption("Snake")
+
+def draw_grass():
+    rect_color = pygame.Color("green3")
+    for x in range(BOARD_COLUMNS):
+        for y in range(1, BOARD_ROWS + 1):
+            grass = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+            pygame.draw.rect(screen, rect_color, grass)
+
+clock = pygame.time.Clock()
+running = True
+
+while running:
+    for event in pygame.event.get():
+        # Luk spillet
+        if event.type == pygame.QUIT:
+            running = False
+
+    draw_hud_text(screen, score)
+    draw_grass()
+
+    pygame.display.flip()
+    clock.tick(60)
+
+pygame.quit()
+```
+
 ### `hud.py`
 
 For at lave vores point linie, skal vi først initialisere pygame og derefter fortælle pygame, at vi skal bruge en font (skrifttype).
@@ -122,52 +232,6 @@ def draw_hud_text(screen, score):
     text = f" SCORE {score:03d}"      # nul-udfyld til 3 cifre, fx 0 -> "000", 42 -> "042"
     rendered = font.render(text, True, (255, 255, 255))
     screen.blit(rendered, (0, 0))
-```
-
-### `snake_game.py`
-
-```python
-import pygame
-pygame.init()
-
-from hud import draw_hud_text
-
-GAME_BOARD = []
-CELL_SIZE = 32
-BOARD_ROWS = 16
-BOARD_COLUMNS = 24
-
-WIDTH = BOARD_COLUMNS * CELL_SIZE
-HEIGHT = BOARD_ROWS * CELL_SIZE
-
-score = 0
-
-screen = pygame.display.set_mode((WIDTH, HEIGHT + CELL_SIZE))
-pygame.display.set_caption("Snake")
-
-def draw_grass():
-    rect_color = pygame.Color("green3")
-    for x in range(BOARD_COLUMNS):
-        for y in range(1, BOARD_ROWS + 1):
-            grass = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
-            pygame.draw.rect(screen, rect_color, grass)
-
-clock = pygame.time.Clock()
-running = True
-
-while running:
-    for event in pygame.event.get():
-        # Luk spillet
-        if event.type == pygame.QUIT:
-            running = False
-
-    draw_hud_text(screen, score)
-    draw_grass()
-
-    pygame.display.flip()
-    clock.tick(60)
-
-pygame.quit()
 ```
 
 ### Prøv selv
