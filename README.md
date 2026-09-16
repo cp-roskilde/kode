@@ -5,20 +5,22 @@
 Dette repo indeholder materiale, kodeøvelser, links, eksempler, programmer og
 spil for Coding Pirates Roskilde afdeling. Materialet kan findes i undermapper
 
+- 👉 [2026 Efterårssæson](./2026%20Efterår/) 👈
 - [2026 Forårssæson](./2026%20Forår/)
 - [2025 Efterårssæson](./2025%20Efterår/)
 
 ## Forløb
 
-I forårssæson 2026 kører vi to forløb
+I efterårssæson 2026 kører vi to forløb
 
 1. `Grafisk programmering` (PictoBlox, Scratch, Microbit)
 2. `Python programmering`
 
-Hvis det er første gang du er her, hiv fat i en instruktør. Vi anbefaler at du
-derefter prøver øvelsen [Dodge Falling
+Hvis det er første gang du er her, hiv fat i en instruktør. Vi anbefaler at
+starter med [Pictoblox introduktion](./Intro/Pictoblox%20-%20introduktion.pdf)
+og du derefter prøver øvelsen [Dodge Falling
 Balls](./2025%20Efterår/Grafisk/Dodging%20Falling%20Balls/) (Undgå Faldende
-Bolde) hvor du lærer en masse forskellig PictoBlox funktioner.
+Bolde) hvor du lærer en masse.
 
 ## Regler og praktik
 
