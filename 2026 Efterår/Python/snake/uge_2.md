@@ -433,6 +433,108 @@ går lige igennem feltet, eller om den drejer — og i så fald, hvilken af de
 fire hjørne-billeder der passer. Tegn det op på papir med pile, hvis det er
 svært at se for jer i koden.
 
+**Hints**
+
+Er I kørt fast, så prøv jer frem i denne rækkefølge:
+
+**Hint 1 — Hent begge naboer**
+
+I har allerede `prev_x, prev_y = snake_body[index - 1]` fra den nuværende
+kode. I skal bruge *samme* trick én gang til, for naboen på den anden side:
+
+```python
+prev_pos = snake_body[index - 1]   # nærmere hovedet
+next_pos = snake_body[index + 1]   # nærmere halen
+```
+
+**Hint 2 — Lav en funktion, der finder "hvilken kant"**
+
+I stedet for at skrive den samme sammenligning af x'er og y'er hver gang,
+er det en god idé at samle den logik ét sted, i en lille funktion. Giv den
+to positioner, og lad den svare med `"top"`, `"bottom"`, `"left"` eller
+`"right"` — altså: hvilken kant af feltet ligger `to_pos` ved, set fra
+`from_pos`?
+
+```python
+def edge_towards(from_pos, to_pos):
+    dx = to_pos[0] - from_pos[0]
+    dy = to_pos[1] - from_pos[1]
+    if dx == 1:
+        return "right"
+    if dx == -1:
+        return "left"
+    if dy == 1:
+        return "bottom"
+    if dy == -1:
+        return "top"
+```
+
+Kald den to gange pr. segment — én gang med `prev_pos`, én gang med
+`next_pos` — så får I to kant-navne, fx `"bottom"` og `"left"`. De to
+tilsammen fortæller *præcis*, hvilket af de fire hjørne-billeder der passer.
+
+**Hint 3 — Hvorfor `frozenset`?**
+
+Et almindeligt Python-`set` (og dets "frosne", uforanderlige udgave,
+`frozenset`) er en samling, hvor **rækkefølgen ikke betyder noget** — kun
+hvad der er i den:
+
+```python
+>>> frozenset({"bottom", "left"}) == frozenset({"left", "bottom"})
+True
+```
+
+Det er lige præcis, hvad I har brug for: det er ligegyldigt, om det var
+`prev_pos`, der lå mod bunden, eller om det var `next_pos` — resultatet
+`{"bottom", "left"}` skal give det samme hjørne uanset hvad. Med et
+almindeligt par, `("bottom", "left")`, ville I skulle tjekke **begge**
+rækkefølger selv; med `frozenset` løser Python det for jer. Og fordi en
+`frozenset` (modsat et almindeligt `set`) ikke kan ændres, må den gerne
+bruges som nøgle i en dictionary — det kan et almindeligt `set` ikke.
+
+Byg jeres opslagsbog med `frozenset` som nøgler:
+
+```python
+corner_images = {
+    frozenset({"top", "left"}):     load("body_topleft.png"),
+    frozenset({"top", "right"}):    load("body_topright.png"),
+    frozenset({"bottom", "left"}):  load("body_bottomleft.png"),
+    frozenset({"bottom", "right"}): load("body_bottomright.png"),
+}
+```
+
+**Hint 4 — Sæt det sammen i `draw_snake()`**
+
+Nu har I byggeklodserne. I `else`-grenen (det midterste segment), find
+begge kanter, og saml dem i ét `set`:
+
+```python
+edge_to_prev = edge_towards(segment, prev_pos)
+edge_to_next = edge_towards(segment, next_pos)
+edges = {edge_to_prev, edge_to_next}
+```
+
+Herfra er der tre muligheder — prøv selv at skrive `if`/`elif`/`else` for
+dem, før I kigger på facit:
+- `edges` er `{"left", "right"}` → lige, vandret stykke
+- `edges` er `{"top", "bottom"}` → lige, lodret stykke
+- ellers → det er et hjørne, og `frozenset(edges)` er nøglen ind i
+  `corner_images`
+
+<details>
+<summary>Facit for else-grenen (kig kun her, hvis I har prøvet selv)</summary>
+
+```python
+if edges == {"left", "right"}:
+    screen.blit(body_images["horizontal"], pixel_pos)
+elif edges == {"top", "bottom"}:
+    screen.blit(body_images["vertical"], pixel_pos)
+else:
+    screen.blit(corner_images[frozenset(edges)], pixel_pos)
+```
+
+</details>
+
 #### Opgave 2 — Tegn æblet
 
 I `Resources/gfx/` ligger `apple.png`. Lav en lille funktion
