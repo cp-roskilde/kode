@@ -302,7 +302,7 @@ tester vi i uge 4.
 import pygame
 pygame.init()
 
-from hud import draw_hud_text
+from hud import draw_hud_img
 from snake import draw_snake, move_snake, change_direction
 
 GAME_BOARD = []
@@ -319,9 +319,13 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT + CELL_SIZE))
 pygame.display.set_caption("Snake")
 
 def draw_grass():
-    rect_color = pygame.Color("green3")
     for x in range(BOARD_COLUMNS):
         for y in range(1, BOARD_ROWS + 1):
+            # Vi tegner nu græsset. For at give det mere liv, skifter vi farve, for hver celle.
+            if (x + y) % 2 == 0:
+                rect_color = pygame.Color("green3")
+            else:
+                rect_color = pygame.Color("lawngreen")
             grass = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
             pygame.draw.rect(screen, rect_color, grass)
 
@@ -364,7 +368,7 @@ while running:
             elif event.key == pygame.K_RIGHT:
                 change_direction((1, 0))
 
-    draw_hud_text(screen, score)
+    draw_hud_img(screen, score)
     draw_grass()
     draw_wall()
     draw_snake(screen)
