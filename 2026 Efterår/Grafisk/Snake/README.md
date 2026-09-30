@@ -1,5 +1,7 @@
 # Snake
 
+💥 ØVELSEN ER IKKE KOMPLET ENDNU 💥
+
 Her er de specifikke kodeblokke og logik, du skal bruge i PictoBlox for at få dit Snake-spil til at fungere. Vi opdeler det i tre dele: Slangehovedet, Kroppen og Maden.
 ------------------------------
 ## 1. Slangehovedet (Hovedlogik og styring)
