@@ -1,6 +1,4 @@
 def init():
-	global GAME_BOARD
-	GAME_BOARD = []
 	global CELL_SIZE
 	CELL_SIZE = 32
 	global BOARD_ROWS
