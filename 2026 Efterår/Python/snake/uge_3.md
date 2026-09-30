@@ -20,7 +20,6 @@ Kig på toppen af de to filer, som de så ud efter uge 2:
 
 ```python
 # snake_game.py
-GAME_BOARD = []
 CELL_SIZE = 32
 BOARD_ROWS = 16
 BOARD_COLUMNS = 24
@@ -53,8 +52,11 @@ fil, `globals.py`:
 ```python
 # globals.py
 def init():
+<<<<<<< HEAD
     global GAME_BOARD
     GAME_BOARD = []
+=======
+>>>>>>> 2373e19 (Uge 3 opgave. /JL)
     global CELL_SIZE
     CELL_SIZE = 32
     global BOARD_ROWS
@@ -93,9 +95,15 @@ def load(filnavn):
 Det er ikke nok at oprette `globals.py` og slette de gamle linjer
 `BOARD_COLUMNS = 24` osv. øverst i de to filer. I skal også igennem
 **hver eneste** linje i `snake_game.py` og `snake.py`, der brugte de gamle
+<<<<<<< HEAD
 navne, og rette dem til `GL.BOARD_COLUMNS`, `GL.BOARD_ROWS`, `GL.CELL_SIZE`
 og `GL.GAME_BOARD` — konsekvent, alle sammen, ikke kun de første par I
 støder på. Det gælder fx alle de steder, hvor `CELL_SIZE` bruges til at
+=======
+navne, og rette dem til `GL.BOARD_COLUMNS`, `GL.BOARD_ROWS` og `GL.CELL_SIZE`  
+— konsekvent, alle sammen, ikke kun de første par I støder på.  
+Det gælder fx alle de steder, hvor `CELL_SIZE` bruges til at
+>>>>>>> 2373e19 (Uge 3 opgave. /JL)
 regne pixel-koordinater ud i `draw_grass()`, `draw_wall()` og
 `draw_snake()` — hver eneste af dem skal opdateres, ikke kun toppen af
 filen.
@@ -118,7 +126,11 @@ kende forskel på:
 Derfor: når I refaktorerer, skal I gøre begge dele, i denne rækkefølge —
 først rette **alle** brugssteder til at bruge `GL.`, og først *til sidst*
 slette de gamle, øverste variabel-linjer i hver fil. Kør spillet igen
+<<<<<<< HEAD
 bagefter, og bekræft, at det stadig ser og opfører sig helt som før — det
+=======
+bagefter, og bekræft, at det stadig ser ud og opfører sig helt som før — det
+>>>>>>> 2373e19 (Uge 3 opgave. /JL)
 er sådan, I ved, at refactoreringen er lykkedes.
 
 ### Hvorfor en `init()`-funktion, og ikke bare variabler direkte i filen?
@@ -127,7 +139,10 @@ I kunne godt spørge: hvorfor ikke bare skrive
 
 ```python
 # globals.py
+<<<<<<< HEAD
 GAME_BOARD = []
+=======
+>>>>>>> 2373e19 (Uge 3 opgave. /JL)
 CELL_SIZE = 32
 BOARD_ROWS = 16
 BOARD_COLUMNS = 24
