@@ -6,7 +6,7 @@ GL.init()
 
 from hud import draw_hud_img, draw_text_img
 from snake import draw_snake, move_snake, change_direction, draw_apple, place_apple, is_game_over, reset
-from board import draw_wall, is_wall
+from board import draw_wall, is_wall, draw_obstacles, place_obstacles
 
 WIDTH = GL.BOARD_COLUMNS * GL.CELL_SIZE
 HEIGHT = GL.BOARD_ROWS * GL.CELL_SIZE
@@ -48,6 +48,7 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and is_game_over():
                 score = 0
+                place_obstacles()
                 reset()
             match event.key:
                 case pygame.K_UP | pygame.K_w:
@@ -62,6 +63,7 @@ while running:
     draw_hud_img(screen, score)
     draw_grass()
     draw_wall(screen)
+    draw_obstacles(screen)
     draw_apple(screen)
     draw_snake(screen)
 

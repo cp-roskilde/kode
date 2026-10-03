@@ -155,7 +155,7 @@ def place_apple():
     while True:
         x = random.randint(1, GL.BOARD_COLUMNS - 2)
         y = random.randint(2, GL.BOARD_ROWS - 1)
-        if (x, y) not in snake_body:
+        if (x, y) not in snake_body and not is_wall(x, y):
             apple_pos = (x, y)
             return
 
