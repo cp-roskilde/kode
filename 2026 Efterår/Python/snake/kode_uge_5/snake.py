@@ -1,6 +1,7 @@
 import pygame
 import random
 import globals as GL
+from board import is_wall
 
 GFX = "Resources/gfx/"
 
@@ -51,15 +52,26 @@ def move_snake(cols, rows):
     new_head = (head_x + dx, head_y + dy)
     new_x, new_y = new_head
 
+    # Uge 5, Opgave 1 - Lad slangen bevæge sig igennem hullerne i væggene.
+    if new_x < 0:
+        new_x = cols - 1
+    elif new_x > cols:
+        new_x = 0
+    elif new_y < 1:
+        new_y = rows - 1
+    elif new_y > rows:
+        new_y = 1
+    new_head = (new_x, new_y)
+
     # Uge 4, Opgave 1 - Tjek om slangens nye hoved rammer kroppen.
-    if new_head in snake_body[-1:]:
+    if new_head in snake_body[:-1]:
         game_over = True
         return False
-    
-    inside_board = 1 <= new_x <= cols - 2 and 2 <= new_y <= rows - 1
-    if not inside_board:
+
+    if is_wall(new_x, new_y):
         game_over = True
         return False
+
     
     ate_apple = new_head == apple_pos
 
@@ -72,14 +84,22 @@ def move_snake(cols, rows):
 
     return ate_apple
 
+# Uge 5, Opgave 2 - Sikre at slanges felter behandles rigtigt.
+def step(d):
+    if d > 1:
+        return -1
+    if d < -1:
+        return 1
+    return d
+
 # Uge 2, Opgave 1 - Runde hjørner
 def edge_towards(from_pos, to_pos):
     dx = to_pos[0] - from_pos[0]
     dy = to_pos[1] - from_pos[1]
-    if dx == 1:  return "right"
-    if dx == -1: return "left"
-    if dy == 1:  return "bottom"
-    if dy == -1: return "top"
+    if step(dx) == 1:  return "right" # Uge 5, Opgave 2 - Brug hjælpefunktion til at bestemme slangens placering.
+    if step(dx) == -1: return "left"
+    if step(dy) == 1:  return "bottom"
+    if step(dy) == -1: return "top"
 
 corner_images = {
     frozenset({"top", "left"}):     load("body_topleft.png"),
@@ -98,7 +118,7 @@ def draw_snake(screen):
 
         elif index == len(snake_body) - 1:
             prev_x, prev_y = snake_body[index - 1]
-            tail_direction = (x - prev_x, y - prev_y)
+            tail_direction = (step(x - prev_x), step(y - prev_y)) # Uge 5, Opgave 2 - Placering af halen.
             screen.blit(tail_images[tail_direction], pixel_pos)
 
         else:

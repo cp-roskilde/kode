@@ -50,3 +50,5 @@ def init():
 		'<': 'Resources/font/Individual/_LeftChevron.png',
 		'>': 'Resources/font/Individual/_RightChevron.png',
 		}
+	global GAP_SIZE
+	GAP_SIZE = 4
