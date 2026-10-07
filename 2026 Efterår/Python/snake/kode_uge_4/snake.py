@@ -52,7 +52,7 @@ def move_snake(cols, rows):
     new_x, new_y = new_head
 
     # Uge 4, Opgave 1 - Tjek om slangens nye hoved rammer kroppen.
-    if new_head in snake_body[-1:]:
+    if new_head in snake_body[:-1]:
         game_over = True
         return False
     
