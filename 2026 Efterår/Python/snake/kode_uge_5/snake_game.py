@@ -64,7 +64,8 @@ while running:
     draw_grass()
     draw_wall(screen)
     draw_obstacles(screen)
-    draw_apple(screen)
+    for apl in range(GL.NUM_APPLES):
+        draw_apple(screen, apl)
     draw_snake(screen)
 
     if is_game_over():

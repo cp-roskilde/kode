@@ -44,8 +44,10 @@ def move_snake(cols, rows):
     direction = next_direction
 
     # Uge 3, Opgave 2 - Tjek timeout for æble. Hvis tiden er gået, placér nyt æble
-    if pygame.time.get_ticks() - apple_ticks >= GL.APPLE_TIMEOUT:
-        place_apple()
+    # Hvert æble har sit eget ur, så vi tjekker dem ét ad gangen.
+    for idx in range(GL.NUM_APPLES):
+        if pygame.time.get_ticks() - apple_ticks[idx] >= GL.APPLE_TIMEOUT:
+            place_apple(idx)
 
     head_x, head_y = snake_body[0]
     dx, dy = direction
@@ -72,13 +74,17 @@ def move_snake(cols, rows):
         game_over = True
         return False
 
-    
-    ate_apple = new_head == apple_pos
+    # Vi tjekker om der ligger et æble på hovedets nye position.
+    # 'in' spørger bare, om positionen findes et sted i listen.
+    ate_apple = new_head in apple_pos
 
     if ate_apple:
         # Uge 3, Opgave 1 - Slangen vokser, når den spiser æblerne
         snake_body = [new_head] + snake_body
-        place_apple()
+        # 'in' fortalte os KUN, at der lå et æble. Nu skal vi vide HVILKET æble.
+        # .index() finder pladsen (index) i listen, hvor hovedets position står.
+        idx = apple_pos.index(new_head)
+        place_apple(idx)  # læg et nyt æble på præcis den plads
     else:
         snake_body = [new_head] + snake_body[:-1]
 
@@ -141,22 +147,24 @@ apple_image = pygame.transform.scale(
     (GL.CELL_SIZE, GL.CELL_SIZE)
 )
 
-def draw_apple(screen):
-    x, y = apple_pos
+def draw_apple(screen, idx):
+    x, y = apple_pos[idx]
     screen.blit(apple_image, (x * GL.CELL_SIZE, y * GL.CELL_SIZE))
 
-apple_pos = (0, 0)  # midlertidig værdi - erstattes med det samme af place_apple()
-apple_ticks = 0  # Uge 3, Opgave 2 - variabel til tid
+# Vi laver en liste, med plads til GL.NUM_APPLES positioner.
+apple_pos = GL.NUM_APPLES * [(0, 0)]  # midlertidige værdier - erstattes med det samme af place_apple()
+apple_ticks = GL.NUM_APPLES * [0]  # Uge 3, Opgave 2 - ét ur pr. æble
 
-def place_apple():
+def place_apple(idx):
     global apple_pos, apple_ticks
-    apple_ticks = pygame.time.get_ticks()  # Uge 3, Opgave 2 - Gem tid for æble placering
+    apple_ticks[idx] = pygame.time.get_ticks()  # Uge 3, Opgave 2 - Gem tid for DETTE æbles placering
 
     while True:
         x = random.randint(1, GL.BOARD_COLUMNS - 2)
         y = random.randint(2, GL.BOARD_ROWS - 1)
-        if (x, y) not in snake_body and not is_wall(x, y):
-            apple_pos = (x, y)
+        # Æblet må ikke ligge på slangen, i en mur eller oven på et andet æble
+        if (x, y) not in snake_body and not is_wall(x, y) and (x, y) not in apple_pos:
+            apple_pos[idx] = (x, y)
             return
 
 def reset():
@@ -165,7 +173,9 @@ def reset():
     direction = (1, 0)
     next_direction = (1, 0)
     game_over = False
-    place_apple()
+    # range(GL.NUM_APPLES) giver 0, 1, 2, ... - ét tal for hvert æble
+    for apl in range(GL.NUM_APPLES):
+        place_apple(apl)
 
 # place_apple()  # kald funktionen med det samme, så der er et æble fra start
 reset()
