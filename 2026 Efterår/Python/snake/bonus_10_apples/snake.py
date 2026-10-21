@@ -1,0 +1,163 @@
+import pygame
+import random
+import globals as GL
+
+GFX = "Resources/gfx/"
+
+game_over = False
+
+def is_game_over():
+    return game_over
+
+def load(filnavn):
+    billede = pygame.image.load(GFX + filnavn)
+    return pygame.transform.scale(billede, (GL.CELL_SIZE, GL.CELL_SIZE))
+
+head_images = {
+    (1, 0):  load("head_right.png"),
+    (-1, 0): load("head_left.png"),
+    (0, 1):  load("head_down.png"),
+    (0, -1): load("head_up.png"),
+}
+
+tail_images = {
+    (1, 0):  load("tail_right.png"),
+    (-1, 0): load("tail_left.png"),
+    (0, 1):  load("tail_down.png"),
+    (0, -1): load("tail_up.png"),
+}
+
+body_images = {
+    "horizontal":   load("body_horizontal.png"),
+    "vertical":     load("body_vertical.png"),
+}
+
+def change_direction(new_direction):
+    global next_direction
+    opposite = (-direction[0], -direction[1])
+    if new_direction != opposite:
+        next_direction = new_direction
+
+def move_snake(cols, rows):
+    global snake_body, direction, game_over
+    direction = next_direction
+
+    # Uge 3, Opgave 2 - Tjek timeout for æble. Hvis tiden er gået, placér nyt æble
+    # Bonus: Hvert æble har sit eget ur, så vi tjekker dem ét ad gangen.
+    for idx in range(GL.NUM_APPLES):
+        if pygame.time.get_ticks() - apple_ticks[idx] >= GL.APPLE_TIMEOUT:
+            place_apple(idx)
+
+    head_x, head_y = snake_body[0]
+    dx, dy = direction
+    new_head = (head_x + dx, head_y + dy)
+    new_x, new_y = new_head
+
+    # Uge 4, Opgave 1 - Tjek om slangens nye hoved rammer kroppen.
+    if new_head in snake_body[:-1]:
+        game_over = True
+        return False
+    
+    inside_board = 1 <= new_x <= cols - 2 and 2 <= new_y <= rows - 1
+    if not inside_board:
+        game_over = True
+        return False
+
+    #ate_apple = new_head == apple_pos
+    # Vi skal nu bare tjekke om der ligger et æble, på vores hoveds nye position.
+    # Til dette kan vi bruge 'in', som bare spørger om vores hoved position matcher en position i en liste
+    ate_apple = new_head in apple_pos
+
+    if ate_apple:
+        # Uge 3, Opgave 1 - Slangen vokser, når den spiser æblerne
+        snake_body = [new_head] + snake_body
+        # 'in' fortalte os KUN, at der lå et æble. Nu skal vi vide HVILKET æble.
+        # .index() finder pladsen (index) i listen, hvor hovedets position står.
+        idx = apple_pos.index(new_head)
+        place_apple(idx)  # læg et nyt æble på præcis den plads
+    else:
+        snake_body = [new_head] + snake_body[:-1]
+
+    return ate_apple
+
+# Uge 2, Opgave 1 - Runde hjørner
+def edge_towards(from_pos, to_pos):
+    dx = to_pos[0] - from_pos[0]
+    dy = to_pos[1] - from_pos[1]
+    if dx == 1:  return "right"
+    if dx == -1: return "left"
+    if dy == 1:  return "bottom"
+    if dy == -1: return "top"
+
+corner_images = {
+    frozenset({"top", "left"}):     load("body_topleft.png"),
+    frozenset({"top", "right"}):    load("body_topright.png"),
+    frozenset({"bottom", "left"}):  load("body_bottomleft.png"),
+    frozenset({"bottom", "right"}): load("body_bottomright.png"),
+}
+
+def draw_snake(screen):
+    for index, segment in enumerate(snake_body):
+        x, y = segment
+        pixel_pos = (x * GL.CELL_SIZE, y * GL.CELL_SIZE)
+
+        if index == 0:
+            screen.blit(head_images[direction], pixel_pos)
+
+        elif index == len(snake_body) - 1:
+            prev_x, prev_y = snake_body[index - 1]
+            tail_direction = (x - prev_x, y - prev_y)
+            screen.blit(tail_images[tail_direction], pixel_pos)
+
+        else:
+            prev_pos = snake_body[index - 1]
+            next_pos = snake_body[index + 1]
+            edge_to_prev = edge_towards(segment, prev_pos)
+            edge_to_next = edge_towards(segment, next_pos)
+            edges = {edge_to_prev, edge_to_next}
+
+            if edges == {"left", "right"}:
+                screen.blit(body_images["horizontal"], pixel_pos)
+            elif edges == {"top", "bottom"}:
+                screen.blit(body_images["vertical"], pixel_pos)
+            else:
+                screen.blit(corner_images[frozenset(edges)], pixel_pos)
+
+# Uge 2, Opgave 2 - Tegn æblet
+apple_image = pygame.transform.scale(
+    pygame.image.load("Resources/gfx/apple.png"),
+    (GL.CELL_SIZE, GL.CELL_SIZE)
+)
+
+def draw_apple(screen, idx):
+    x, y = apple_pos[idx]
+    screen.blit(apple_image, (x * GL.CELL_SIZE, y * GL.CELL_SIZE))
+
+# Vi laver en liste, med plads til GL.NUM_APPLES (5) positioner.
+apple_pos = GL.NUM_APPLES * [(0, 0)]  # midlertidig værdi - erstattes med det samme af place_apple()
+apple_ticks = GL.NUM_APPLES * [0]  # Uge 3, Opgave 2 - ét ur pr. æble
+
+def place_apple(idx):
+    global apple_pos, apple_ticks
+    apple_ticks[idx] = pygame.time.get_ticks()  # Uge 3, Opgave 2 - Gem tid for DETTE æbles placering
+
+    while True:
+        x = random.randint(1, GL.BOARD_COLUMNS - 2)
+        y = random.randint(2, GL.BOARD_ROWS - 1)
+        # Æblet må hverken ligge på slangen eller oven på et andet æble
+        if (x, y) not in snake_body and (x, y) not in apple_pos:
+            apple_pos[idx] = (x, y)
+            return
+
+def reset():
+    global snake_body, direction, next_direction, game_over
+    snake_body = [(12, 8), (11, 8), (10, 8)]
+    direction = (1, 0)
+    next_direction = (1, 0)
+    game_over = False
+    # range(GL.NUM_APPLES) giver 0, 1, 2, 3, 4 - altså alle 5 æbler
+    for apl in range(GL.NUM_APPLES):
+        place_apple(apl)
+
+# place_apple()  # kald funktionen med det samme, så der er et æble fra start
+reset()
