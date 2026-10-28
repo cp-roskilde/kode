@@ -10,6 +10,16 @@ game_over = False
 def is_game_over():
     return game_over
 
+# Uge 6, bonus - Getters for AI
+def get_snake_body():
+    return snake_body
+
+def get_direction():
+    return direction
+
+def get_apple_pos():
+    return apple_pos
+
 def load(filnavn):
     billede = pygame.image.load(GFX + filnavn)
     return pygame.transform.scale(billede, (GL.CELL_SIZE, GL.CELL_SIZE))
@@ -44,51 +54,37 @@ def move_snake(cols, rows):
     direction = next_direction
 
     # Uge 3, Opgave 2 - Tjek timeout for æble. Hvis tiden er gået, placér nyt æble
-    # Hvert æble har sit eget ur, så vi tjekker dem ét ad gangen.
-    for idx in range(GL.NUM_APPLES):
-        if pygame.time.get_ticks() - apple_ticks[idx] >= GL.APPLE_TIMEOUT:
-            place_apple(idx)
+    if pygame.time.get_ticks() - apple_ticks >= GL.APPLE_TIMEOUT:
+        place_apple()
 
-    head_x, head_y = snake_body[0]
-    dx, dy = direction
-    new_head = (head_x + dx, head_y + dy)
-    new_x, new_y = new_head
+    # Uge 6, bonus - Refactoring for AI
+    new_head = next_position(snake_body[0], direction)
 
-    # Uge 5, Opgave 1 - Lad slangen bevæge sig igennem hullerne i væggene.
-    if new_x < 0:
-        new_x = cols - 1
-    elif new_x > cols:
-        new_x = 0
-    elif new_y < 1:
-        new_y = rows - 1
-    elif new_y > rows:
-        new_y = 1
-    new_head = (new_x, new_y)
-
-    # Uge 4, Opgave 1 - Tjek om slangens nye hoved rammer kroppen.
-    if new_head in snake_body[:-1]:
+    if is_deadly(new_head):
         game_over = True
         return False
-
-    if is_wall(new_x, new_y):
-        game_over = True
-        return False
-
-    # Vi tjekker om der ligger et æble på hovedets nye position.
-    # 'in' spørger bare, om positionen findes et sted i listen.
-    ate_apple = new_head in apple_pos
+    
+    ate_apple = new_head == apple_pos
 
     if ate_apple:
         # Uge 3, Opgave 1 - Slangen vokser, når den spiser æblerne
         snake_body = [new_head] + snake_body
-        # 'in' fortalte os KUN, at der lå et æble. Nu skal vi vide HVILKET æble.
-        # .index() finder pladsen (index) i listen, hvor hovedets position står.
-        idx = apple_pos.index(new_head)
-        place_apple(idx)  # læg et nyt æble på præcis den plads
+        place_apple()
     else:
         snake_body = [new_head] + snake_body[:-1]
 
     return ate_apple
+
+# Uge 6, Bonus - Hvor ender hovedet, hvis det tager ét skridt i retning 'd'?
+def next_position(pos, d):
+    x = (pos[0] + d[0]) % GL.BOARD_COLUMNS          # 24 -> 0, -1 -> 23
+    y = (pos[1] + d[1] - 1) % GL.BOARD_ROWS + 1     # 17 -> 1,  0 -> 16
+    return (x, y)
+
+# Uge 6, Bonus - Dør slangen, hvis hovedet havner på feltet 'pos'?
+def is_deadly(pos):
+    x, y = pos
+    return pos in snake_body[:-1] or is_wall(x, y)
 
 # Uge 5, Opgave 2 - Sikre at slanges felter behandles rigtigt.
 def step(d):
@@ -147,24 +143,22 @@ apple_image = pygame.transform.scale(
     (GL.CELL_SIZE, GL.CELL_SIZE)
 )
 
-def draw_apple(screen, idx):
-    x, y = apple_pos[idx]
+def draw_apple(screen):
+    x, y = apple_pos
     screen.blit(apple_image, (x * GL.CELL_SIZE, y * GL.CELL_SIZE))
 
-# Vi laver en liste, med plads til GL.NUM_APPLES positioner.
-apple_pos = GL.NUM_APPLES * [(0, 0)]  # midlertidige værdier - erstattes med det samme af place_apple()
-apple_ticks = GL.NUM_APPLES * [0]  # Uge 3, Opgave 2 - ét ur pr. æble
+apple_pos = (0, 0)  # midlertidig værdi - erstattes med det samme af place_apple()
+apple_ticks = 0  # Uge 3, Opgave 2 - variabel til tid
 
-def place_apple(idx):
+def place_apple():
     global apple_pos, apple_ticks
-    apple_ticks[idx] = pygame.time.get_ticks()  # Uge 3, Opgave 2 - Gem tid for DETTE æbles placering
+    apple_ticks = pygame.time.get_ticks()  # Uge 3, Opgave 2 - Gem tid for æble placering
 
     while True:
         x = random.randint(1, GL.BOARD_COLUMNS - 2)
         y = random.randint(2, GL.BOARD_ROWS - 1)
-        # Æblet må ikke ligge på slangen, i en mur eller oven på et andet æble
-        if (x, y) not in snake_body and not is_wall(x, y) and (x, y) not in apple_pos:
-            apple_pos[idx] = (x, y)
+        if (x, y) not in snake_body and not is_wall(x, y):
+            apple_pos = (x, y)
             return
 
 def reset():
@@ -173,9 +167,7 @@ def reset():
     direction = (1, 0)
     next_direction = (1, 0)
     game_over = False
-    # range(GL.NUM_APPLES) giver 0, 1, 2, ... - ét tal for hvert æble
-    for apl in range(GL.NUM_APPLES):
-        place_apple(apl)
+    place_apple()
 
 # place_apple()  # kald funktionen med det samme, så der er et æble fra start
 reset()
