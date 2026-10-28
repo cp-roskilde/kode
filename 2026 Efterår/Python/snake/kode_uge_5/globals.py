@@ -52,5 +52,3 @@ def init():
 		}
 	global GAP_SIZE
 	GAP_SIZE = 4
-	global NUM_APPLES # Antal æbler på banen - prøv at ændre tallet!
-	NUM_APPLES = 5
