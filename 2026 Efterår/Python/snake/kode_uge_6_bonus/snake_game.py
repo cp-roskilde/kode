@@ -53,7 +53,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        if event.type == SNAKE_MOVE and not is_game_over():
+        if event.type == SNAKE_MOVE and game_mode != "menu" and not is_game_over():
             if game_mode == "ai":
                 # AI'en "trykker på tasterne" lige før slangen flytter sig
                 action = ai.choose_action(ai.get_state())
