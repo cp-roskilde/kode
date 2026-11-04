@@ -1,6 +1,6 @@
 {
     "recommendations": [
-        "ms-python.python",
-        "ms-vscode.vscode-python-web-wasm"
+        // "ms-python.python",
+        // "ms-vscode.vscode-python-web-wasm"
     ]
 }
